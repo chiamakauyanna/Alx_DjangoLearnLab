@@ -20,7 +20,7 @@ def run_queries():
     author_name = "J.K. Rowling"
     try:
         author = Author.objects.get(name=author_name)
-        books_by_author = author.books.all()
+        books_by_author = Book.objects.filter(author=author)
         print(f"Books by {author_name}:")
         for book in books_by_author:
             print("-", book.title)
@@ -39,7 +39,7 @@ def run_queries():
 
     # Query 3: Retrieve the librarian for a library
     try:
-        librarian = library.librarian
+        librarian = Librarian.objects.get(library=library) 
         print(f"\nThe librarian of {library_name} is {librarian.name}")
     except Librarian.DoesNotExist:
         print(f"No librarian assigned to {library_name}")
