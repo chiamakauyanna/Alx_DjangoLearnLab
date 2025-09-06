@@ -5,8 +5,8 @@ from . import views
 
 urlpatterns = [
     path("books/", list_books, name="list_books"),  # function-based
-    path("books/add/", views.add_book, name="add_book"),
-    path("books/<int:pk>/edit/", views.edit_book, name="edit_book"),
+    path("books/add_book/", views.add_book, name="add_book"),
+    path("books/<int:pk>/edit_book/", views.edit_book, name="edit_book"),
     path("books/<int:pk>/delete/", views.delete_book, name="delete_book"),  
 
     path("library/<int:pk>/", LibraryDetailView.as_view(), name="library_detail"),  # class-based
