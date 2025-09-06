@@ -30,7 +30,8 @@ class CustomLogoutView(LogoutView):
     
    # Allow GET requests to log out (instead of POST only)
     def get(self, request, *args, **kwargs):
-        return self.post(request, *args, **kwargs) 
+        """Allow GET request to log out user."""
+        return super().post(request, *args, **kwargs) 
 
 # Function-based view: list all books
 def list_books(request):
