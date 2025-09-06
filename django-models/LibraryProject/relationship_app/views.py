@@ -4,7 +4,6 @@ from .models import Book
 from .models import Library
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
-from django.contrib.auth.views import LoginView, LogoutView
 
 # 🔹 Registration view
 def register(request):
@@ -18,20 +17,6 @@ def register(request):
         form = UserCreationForm()
     return render(request, "relationship_app/register.html", {"form": form})
 
-
-# 🔹 Login view (using Django's built-in LoginView)
-class CustomLoginView(LoginView):
-    template_name = "relationship_app/login.html"
-    
-
-# 🔹 Logout view (using Django's built-in LogoutView)
-class CustomLogoutView(LogoutView):
-    template_name = "relationship_app/logout.html"
-    
-   # Allow GET requests to log out (instead of POST only)
-    def get(self, request, *args, **kwargs):
-        """Allow GET request to log out user."""
-        return super().post(request, *args, **kwargs) 
 
 # Function-based view: list all books
 def list_books(request):
