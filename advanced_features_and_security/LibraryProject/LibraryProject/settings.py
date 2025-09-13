@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-$+6t)2#@*njwpieuh4f(!d(*h4gr=gs97&wvepc=1i83z%dw%o'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 
 
 # Application definition
@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bookshelf.apps.BookshelfConfig',
-    'relationship_app'
+    'relationship_app',
+    'csp'
 ]
 
 MIDDLEWARE = [
@@ -49,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'csp.middleware.CSPMiddleware',
 ]
 
 ROOT_URLCONF = 'LibraryProject.urls'
@@ -129,3 +131,18 @@ LOGOUT_REDIRECT_URL = "login"
 
 # Use the custom user model
 AUTH_USER_MODEL = "bookshelf.CustomUser"
+
+# Browser security headers
+SECURE_BROWSER_XSS_FILTER = True
+X_FRAME_OPTIONS = "DENY"
+SECURE_CONTENT_TYPE_NOSNIFF = True
+
+# Cookies must be sent via HTTPS
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+
+# Example CSP rules
+CSP_DEFAULT_SRC = ("'self'",)  # only allow content from this domain
+CSP_SCRIPT_SRC = ("'self'",)   # only allow local scripts
+CSP_STYLE_SRC = ("'self'", "https://fonts.googleapis.com")  # allow Google Fonts
+CSP_FONT_SRC = ("'self'", "https://fonts.gstatic.com")
