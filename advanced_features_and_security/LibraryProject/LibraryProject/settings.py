@@ -146,3 +146,26 @@ CSP_DEFAULT_SRC = ("'self'",)  # only allow content from this domain
 CSP_SCRIPT_SRC = ("'self'",)   # only allow local scripts
 CSP_STYLE_SRC = ("'self'", "https://fonts.googleapis.com")  # allow Google Fonts
 CSP_FONT_SRC = ("'self'", "https://fonts.gstatic.com")
+
+# Force all traffic to use HTTPS
+SECURE_SSL_REDIRECT = True  
+
+# HTTP Strict Transport Security (HSTS)
+SECURE_HSTS_SECONDS = 31536000  # 1 year
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+
+# Cookies transmitted only over HTTPS
+SESSION_COOKIE_SECURE = True  
+CSRF_COOKIE_SECURE = True  
+
+# Protect against clickjacking
+X_FRAME_OPTIONS = "DENY"  
+
+# Prevent MIME type sniffing
+SECURE_CONTENT_TYPE_NOSNIFF = True  
+
+# Enable browser XSS protection
+SECURE_BROWSER_XSS_FILTER = True  
+
+
