@@ -128,4 +128,4 @@ LOGIN_REDIRECT_URL = "list_books"
 LOGOUT_REDIRECT_URL = "login"
 
 # Use the custom user model
-AUTH_USER_MODEL = "relationship_app.CustomUser"
+AUTH_USER_MODEL = "bookshelf.CustomUser"
