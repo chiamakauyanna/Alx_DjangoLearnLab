@@ -9,3 +9,18 @@
 Permissions:
 - Unauthenticated users → Read-only access
 - Authenticated users → Full CRUD access
+
+## Filtering, Searching, and Ordering
+
+### Filtering
+- `/api/books/?publication_year=2024`
+- `/api/books/?author=1`
+- `/api/books/?title=My Book`
+
+### Searching
+- `/api/books/?search=Harry`
+- `/api/books/?search=Rowling`
+
+### Ordering
+- `/api/books/?ordering=title`
+- `/api/books/?ordering=-publication_year`
