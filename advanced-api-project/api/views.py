@@ -1,7 +1,7 @@
 from rest_framework import generics, permissions, filters
 from django_filters.rest_framework import DjangoFilterBackend
 from .models import Book
-from .serializer import BookSerializer
+from .serializers import BookSerializer
 
 # Create your views here.
 # List all books
