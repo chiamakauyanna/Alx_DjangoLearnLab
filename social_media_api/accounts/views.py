@@ -62,3 +62,6 @@ class UserViewSet(viewsets.ModelViewSet):
 
         user.following.remove(user_to_unfollow)
         return Response({'message': f'You have unfollowed {user_to_unfollow.username}.'}, status=status.HTTP_200_OK)
+
+class DummyUserView(generics.GenericAPIView):
+    queryset = CustomUser.objects.all()
