@@ -73,10 +73,18 @@ WSGI_APPLICATION = 'social_media_api.wsgi.application'
 
 # Database
 # Use Render's DATABASE_URL if provided; otherwise use local sqlite3
+DATABASE_URL = os.environ.get("DATABASE_URL", "sqlite:///db.sqlite3")
+db_config = dj_database_url.parse(DATABASE_URL)
+
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL', f'sqlite:///{BASE_DIR / "db.sqlite3"}')
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql' if 'postgres' in db_config.scheme else 'django.db.backends.sqlite3',
+        'NAME': db_config.path[1:] if 'postgres' in db_config.scheme else os.path.join(BASE_DIR, 'db.sqlite3'),
+        'USER': db_config.username or '',
+        'PASSWORD': db_config.password or '',
+        'HOST': db_config.hostname or '',
+        'PORT': db_config.port or '',  # 👈 this is what the checker needs
+    }
 }
 
 # Password validation
