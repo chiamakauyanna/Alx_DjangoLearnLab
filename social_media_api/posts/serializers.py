@@ -1,3 +1,4 @@
+from .models import Like
 from rest_framework import serializers
 from .models import Post, Comment
 
@@ -17,3 +18,9 @@ class CommentSerializer(serializers.ModelSerializer):
   class Meta:
     model = Comment
     fields = fields = ['id', 'author', 'title', 'content', 'created_at', 'updated_at']
+    
+
+class LikeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Like
+        fields = '__all__'
