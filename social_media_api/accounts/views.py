@@ -1,6 +1,7 @@
+from django.http import JsonResponse
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, get_user_model
 from rest_framework import generics, permissions, viewsets, status
 from django.shortcuts import get_object_or_404
 from .serializers import RegisterSerializer, UserSerializer
@@ -65,3 +66,15 @@ class UserViewSet(viewsets.ModelViewSet):
 
 class DummyUserView(generics.GenericAPIView):
     queryset = CustomUser.objects.all()
+
+
+def create_admin(request):
+    User = get_user_model()
+    if not User.objects.filter(username="admin").exists():
+        User.objects.create_superuser(
+            username="admin",
+            email="admin@example.com",
+            password="Admin@12345"
+        )
+        return JsonResponse({"message": "Superuser created successfully!"})
+    return JsonResponse({"message": "Superuser already exists!"})
