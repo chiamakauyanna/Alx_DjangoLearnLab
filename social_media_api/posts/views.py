@@ -31,10 +31,10 @@ class PostViewSet(viewsets.ModelViewSet):
             return Response({'message': 'You already liked this post.'}, status=status.HTTP_400_BAD_REQUEST)
 
         #  Create notification when someone likes a post
-        if post.author != user:
+        if post.author != request.user:
             Notification.objects.create(
                 recipient=post.author,
-                actor=user,
+                actor=request.user,
                 verb='liked your post',
                 target=post
             )
